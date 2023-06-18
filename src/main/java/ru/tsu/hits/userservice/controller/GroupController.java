@@ -3,7 +3,6 @@ package ru.tsu.hits.userservice.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.tsu.hits.userservice.dto.GroupDto;
-import ru.tsu.hits.userservice.dto.converter.GroupDtoConverter;
 import ru.tsu.hits.userservice.service.GroupService;
 
 import java.util.List;

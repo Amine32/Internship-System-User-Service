@@ -13,6 +13,7 @@ import ru.tsu.hits.userservice.model.Role;
 import ru.tsu.hits.userservice.model.UserEntity;
 import ru.tsu.hits.userservice.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,8 +50,25 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<UserEntity> getUsersByRole(Role role) {
-        return userRepository.findByRole(role);
+    public UserDto getUserDtoById(String id) {
+        return UserDtoConverter.convertEntityToDto(getUserById(id));
+    }
+
+    @Transactional(readOnly = true)
+    public UserDto getUserDtoByEmail(String email) {
+        return UserDtoConverter.convertEntityToDto(userRepository.findByEmail(email));
+    }
+
+    @Transactional(readOnly = true)
+    public List<UserDto> getUsersByRole(Role role) {
+        List<UserEntity> users = userRepository.findByRole(role);
+        List<UserDto> result = new ArrayList<>();
+
+        users.forEach(element -> {
+            result.add(UserDtoConverter.convertEntityToDto(element));
+        });
+
+        return result;
     }
 
 }

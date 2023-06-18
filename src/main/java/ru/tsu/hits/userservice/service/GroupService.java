@@ -24,6 +24,7 @@ public class GroupService {
     @Transactional
     public GroupDto createGroup(String groupNumber) {
         GroupEntity groupEntity = new GroupEntity();
+        System.out.println(groupNumber);
         groupEntity.setGroupNumber(groupNumber);
 
         groupEntity = groupRepository.save(groupEntity);

@@ -23,13 +23,13 @@ public class UserController {
     }
 
 
-    @GetMapping("/{id}")
-    public UserEntity getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
+    @GetMapping("/{email}")
+    public UserDto getUserByEmail(@PathVariable String email) {
+        return userService.getUserDtoByEmail(email);
     }
 
-    @GetMapping("/{role}")
-    public List<UserEntity> getUsersByRole(@PathVariable String role) {
+    @GetMapping("/roles/{role}")
+    public List<UserDto> getUsersByRole(@PathVariable String role) {
         return userService.getUsersByRole(Role.valueOf(role));
     }
 }

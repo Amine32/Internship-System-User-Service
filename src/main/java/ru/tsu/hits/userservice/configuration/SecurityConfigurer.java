@@ -1,4 +1,4 @@
-package ru.tsu.hits.userservice.security;
+package ru.tsu.hits.userservice.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import ru.tsu.hits.userservice.security.JwtRequestFilter;
 import ru.tsu.hits.userservice.service.CustomUserDetailsService;
 
 import java.util.Arrays;

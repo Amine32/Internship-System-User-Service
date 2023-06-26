@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.tsu.hits.userservice.dto.GroupDto;
 import ru.tsu.hits.userservice.dto.converter.GroupDtoConverter;
 import ru.tsu.hits.userservice.exception.GroupNotFoundException;
+import ru.tsu.hits.userservice.exception.StudentAlreadyBelongsToGroup;
 import ru.tsu.hits.userservice.model.GroupEntity;
 import ru.tsu.hits.userservice.model.UserEntity;
 import ru.tsu.hits.userservice.repository.GroupRepository;
@@ -37,6 +38,12 @@ public class GroupService {
         GroupEntity group = getGroupById(groupNumber);
 
         UserEntity student = userService.getUserById(studentId);
+
+        //check if student already belongs to any group
+        if(student.getGroup() != null) {
+            throw new StudentAlreadyBelongsToGroup("Student already belongs to a group");
+        }
+
         student.setGroup(group);
 
         List<UserEntity> students = group.getStudents();

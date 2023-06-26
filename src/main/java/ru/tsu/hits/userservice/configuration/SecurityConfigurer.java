@@ -16,9 +16,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import ru.tsu.hits.userservice.security.JwtRequestFilter;
 import ru.tsu.hits.userservice.service.CustomUserDetailsService;
 
-import java.util.Arrays;
-import java.util.List;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor

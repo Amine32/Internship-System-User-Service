@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.*;
 import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
 import ru.tsu.hits.userservice.model.Role;
-import ru.tsu.hits.userservice.model.UserEntity;
 import ru.tsu.hits.userservice.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -31,5 +31,10 @@ public class UserController {
     @GetMapping("/roles/{role}")
     public List<UserDto> getUsersByRole(@PathVariable String role) {
         return userService.getUsersByRole(Role.valueOf(role));
+    }
+
+    @GetMapping("/jwt")
+    public UserDto getUserByToken(HttpServletRequest request) {
+        return userService.getUserByToken(request);
     }
 }

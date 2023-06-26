@@ -9,7 +9,7 @@ import ru.tsu.hits.userservice.service.GroupService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/groups")
+@RequestMapping("/api/groups")
 @RequiredArgsConstructor
 public class GroupController {
 

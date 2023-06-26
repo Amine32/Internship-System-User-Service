@@ -14,7 +14,7 @@ import ru.tsu.hits.userservice.service.CustomUserDetailsService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/authenticate")
+@RequestMapping("/api/authenticate")
 public class JwtAuthenticationController {
 
     private final AuthenticationManager authenticationManager;

@@ -19,6 +19,7 @@ ru\tsu\hits\userservice\security\JwtUtil.class
 ru\tsu\hits\userservice\security\CustomUserDetails.class
 ru\tsu\hits\userservice\dto\JwtRequest.class
 ru\tsu\hits\userservice\dto\UserDto.class
+ru\tsu\hits\userservice\dto\UserSecurityDto.class
 ru\tsu\hits\userservice\model\UserEntity.class
 ru\tsu\hits\userservice\repository\UserRepository.class
 ru\tsu\hits\userservice\exception\TokenNotFoundException.class

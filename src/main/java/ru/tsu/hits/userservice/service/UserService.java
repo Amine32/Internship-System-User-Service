@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
+import ru.tsu.hits.userservice.dto.UserSecurityDto;
 import ru.tsu.hits.userservice.dto.converter.UserDtoConverter;
 import ru.tsu.hits.userservice.exception.TokenNotFoundException;
 import ru.tsu.hits.userservice.exception.UserNotFoundException;
@@ -69,7 +70,12 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDto getUserDtoByEmail(String email) {
-        return UserDtoConverter.convertEntityToDto(userRepository.findByEmail(email));
+        return UserDtoConverter.convertEntityToDto(getUserByEmail(email));
+    }
+
+    @Transactional(readOnly = true)
+    public UserEntity getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
     }
 
     @Transactional(readOnly = true)
@@ -92,6 +98,18 @@ public class UserService {
         message.put("type", "UserDeleted");
         message.put("id", id);
         rabbitTemplate.convertAndSend("user.deleted", message);
+    }
+
+    @Transactional
+    public UserSecurityDto getUserSecurityDetails(String email) {
+        UserEntity user = getUserByEmail(email);
+
+        UserSecurityDto dto = new UserSecurityDto();
+        dto.setEmail(user.getEmail());
+        dto.setPassword(user.getPassword());
+        dto.setRole(user.getRole().name());
+
+        return dto;
     }
 
     @Transactional(readOnly = true)

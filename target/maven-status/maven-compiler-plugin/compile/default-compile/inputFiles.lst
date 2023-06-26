@@ -2,6 +2,7 @@ C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\security\CustomUserDetails.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\converter\GroupDtoConverter.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\UserDto.java
+C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\UserSecurityDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\configuration\SecurityConfigurer.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\CreateUpdateGroupDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\security\JwtRequestFilter.java

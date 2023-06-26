@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
+import ru.tsu.hits.userservice.dto.UserSecurityDto;
 import ru.tsu.hits.userservice.model.Role;
 import ru.tsu.hits.userservice.service.UserService;
 
@@ -36,5 +37,15 @@ public class UserController {
     @GetMapping("/jwt")
     public UserDto getUserByToken(HttpServletRequest request) {
         return userService.getUserByToken(request);
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteUserById(@PathVariable String id) {
+        userService.deleteUser(id);
+    }
+
+    @GetMapping("/security/{email}")
+    public UserSecurityDto getUserSecurityDtoByEmail(@PathVariable String email) {
+        return userService.getUserSecurityDetails(email);
     }
 }

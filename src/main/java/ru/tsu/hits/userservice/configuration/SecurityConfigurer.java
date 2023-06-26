@@ -34,7 +34,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/api/authenticate", "/api/users/sign-up", "/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html", "/webjars/**", "/v2/**", "/swagger-resources/**").permitAll()
-                .antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll() // allow CORS preflight requests
+                .antMatchers(HttpMethod.OPTIONS,"/**").permitAll() // allow CORS preflight requests
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

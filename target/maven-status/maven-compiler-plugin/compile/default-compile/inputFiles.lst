@@ -1,3 +1,4 @@
+C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\TokenNotFoundException.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\security\CustomUserDetails.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\converter\GroupDtoConverter.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\UserDto.java
@@ -20,6 +21,7 @@ C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\GroupService.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\JwtResponse.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\repository\UserRepository.java
+C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\StudentAlreadyBelongsToGroup.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\CustomUserDetailsService.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\model\UserEntity.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\security\JwtUtil.java

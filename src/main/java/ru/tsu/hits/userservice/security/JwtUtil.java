@@ -3,8 +3,10 @@ package ru.tsu.hits.userservice.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import ru.tsu.hits.userservice.service.CustomUserDetailsService;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -12,9 +14,11 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class JwtUtil {
 
     private final String SECRET_KEY = "secret";
+    private final CustomUserDetailsService userDetailsService;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -51,6 +55,12 @@ public class JwtUtil {
 
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public Boolean validateToken(String token) {
+        final String username = extractUsername(token);
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }

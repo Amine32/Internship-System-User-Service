@@ -25,7 +25,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final CustomUserDetailsService userDetailsService;
 
-    private static final List<String> EXCLUDED_PATHS = Arrays.asList("/api/authenticate", "/api/users/sign-up", "/swagger-ui", "/v3/api-docs", "/swagger-ui.html", "/webjars", "/v2", "/swagger-resources");
+    private static final List<String> EXCLUDED_PATHS = Arrays.asList("/api/validate","/api/authenticate", "/api/users/sign-up", "/swagger-ui", "/v3/api-docs", "/swagger-ui.html", "/webjars", "/v2", "/swagger-resources");
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)

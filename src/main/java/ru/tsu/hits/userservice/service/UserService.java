@@ -4,11 +4,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
 import ru.tsu.hits.userservice.dto.UserSecurityDto;
@@ -29,7 +31,7 @@ import java.util.*;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final RabbitTemplate rabbitTemplate;
+    private RestTemplate restTemplate;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
@@ -47,10 +49,11 @@ public class UserService {
 
         if(userEntity.getRole() == Role.SCHOOL) {
             if(userEntity.getGroup() != null) {
-                Map<String, String> message = new HashMap<>();
-                message.put("type", "StudentUserCreated");
-                message.put("id", userEntity.getId());
-                rabbitTemplate.convertAndSend("student.user.created", message);
+                HttpHeaders headers = new HttpHeaders();
+                headers.set("Content-Type", "application/json");
+                HttpEntity<String> entity = new HttpEntity<>(headers);
+
+                restTemplate.postForEntity("https://hits-application-service.onrender.com/api/students/" + userEntity.getId(), entity, String.class);
             }
             else {
                 throw new UserLacksFieldException("Student requires a corresponding groupNumber");
@@ -91,7 +94,7 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public List<UserDto> getUsersByRole(Role role) {
-        List<UserEntity> users = userRepository.findByRole(role);
+        List<UserEntity> users = userRepository.findAllByRole(role);
         List<UserDto> result = new ArrayList<>();
 
         users.forEach(element -> {
@@ -102,13 +105,21 @@ public class UserService {
     }
 
     @Transactional
-    public void deleteUser(String id) {
+    public void deleteUser(String id, HttpServletRequest request) {
         userRepository.deleteById(id);
 
-        Map<String, String> message = new HashMap<>();
-        message.put("type", "UserDeleted");
-        message.put("id", id);
-        rabbitTemplate.convertAndSend("user.deleted", message);
+        String authHeader = request.getHeader("Authorization");
+
+        if(authHeader != null && authHeader.startsWith("Bearer ")) {
+            String jwtToken = authHeader.substring(7);
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("Content-Type", "application/json");
+            headers.set("Authorization", "Bearer " + jwtToken);
+            HttpEntity<String> entity = new HttpEntity<>(headers);
+
+            restTemplate.delete("https://hits-application-service.onrender.com/api/students/" + id, entity, String.class);
+        }
     }
 
     @Transactional
@@ -144,7 +155,6 @@ public class UserService {
 
         if(authHeader != null && authHeader.startsWith("Bearer ")) {
             String jwtToken = authHeader.substring(7);
-            System.out.println(jwtToken);
 
             // Split the token into parts (header, payload, signature)
             String[] jwtParts = jwtToken.split("\\.");

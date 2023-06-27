@@ -18,9 +18,3 @@ spring:
     serialization:
       fail-on-empty-beans: false
 
-  rabbitmq:
-    host: rabbitmq-fork.onrender.com
-    port: 5672
-    username: rabbitmq
-    password: 6f24a08cbbe1f3bf6242ee033992b38e
-

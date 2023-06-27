@@ -40,8 +40,8 @@ public class UserController {
     }
 
     @DeleteMapping("{id}")
-    public void deleteUserById(@PathVariable String id) {
-        userService.deleteUser(id);
+    public void deleteUserById(@PathVariable String id, HttpServletRequest request) {
+        userService.deleteUser(id, request);
     }
 
     @GetMapping("/security/{email}")

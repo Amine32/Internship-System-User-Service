@@ -48,4 +48,9 @@ public class UserController {
     public UserSecurityDto getUserSecurityDtoByEmail(@PathVariable String email) {
         return userService.getUserSecurityDetails(email);
     }
+
+    @PostMapping("/company/{userId}/{companyId}")
+    public UserDto setCompany(@PathVariable String userId, @PathVariable String companyId) {
+        return userService.addCompany(userId, companyId);
+    }
 }

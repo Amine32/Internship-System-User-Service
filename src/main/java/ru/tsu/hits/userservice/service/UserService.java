@@ -14,7 +14,9 @@ import ru.tsu.hits.userservice.dto.UserDto;
 import ru.tsu.hits.userservice.dto.UserSecurityDto;
 import ru.tsu.hits.userservice.dto.converter.UserDtoConverter;
 import ru.tsu.hits.userservice.exception.TokenNotFoundException;
+import ru.tsu.hits.userservice.exception.UserLacksFieldException;
 import ru.tsu.hits.userservice.exception.UserNotFoundException;
+import ru.tsu.hits.userservice.exception.WrongRoleException;
 import ru.tsu.hits.userservice.model.Role;
 import ru.tsu.hits.userservice.model.UserEntity;
 import ru.tsu.hits.userservice.repository.UserRepository;
@@ -43,11 +45,20 @@ public class UserService {
         userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
         userEntity = userRepository.save(userEntity);
 
-        if(userEntity.getRole().toString().equals("STUDENT")) {
-            Map<String, String> message = new HashMap<>();
-            message.put("type", "StudentUserCreated");
-            message.put("id", userEntity.getId());
-            rabbitTemplate.convertAndSend("student.user.created", message);
+        if(userEntity.getRole() == Role.SCHOOL) {
+            if(userEntity.getGroup() != null) {
+                Map<String, String> message = new HashMap<>();
+                message.put("type", "StudentUserCreated");
+                message.put("id", userEntity.getId());
+                rabbitTemplate.convertAndSend("student.user.created", message);
+            }
+            else {
+                throw new UserLacksFieldException("Student requires a corresponding groupNumber");
+            }
+        }
+
+        if(userEntity.getRole() == Role.COMPANY && userEntity.getCompanyId() != null) {
+            throw new UserLacksFieldException("User belonging to company needs a company id");
         }
 
         return UserDtoConverter.convertEntityToDto(userEntity);
@@ -98,6 +109,21 @@ public class UserService {
         message.put("type", "UserDeleted");
         message.put("id", id);
         rabbitTemplate.convertAndSend("user.deleted", message);
+    }
+
+    @Transactional
+    public UserDto addCompany(String userId, String companyId) {
+        UserEntity user = getUserById(userId);
+
+        //Check if user has company role
+        if(user.getRole() != Role.COMPANY) {
+            throw new WrongRoleException("User does not have COMPANY role");
+        }
+
+        user.setCompanyId(companyId);
+        user = userRepository.save(user);
+
+        return UserDtoConverter.convertEntityToDto(user);
     }
 
     @Transactional

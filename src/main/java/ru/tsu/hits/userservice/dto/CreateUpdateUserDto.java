@@ -18,4 +18,6 @@ public class CreateUpdateUserDto {
     private String password;
 
     private String groupNumber;
+
+    private String companyId;
 }

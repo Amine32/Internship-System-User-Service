@@ -1,3 +1,4 @@
+ru\tsu\hits\userservice\exception\UserLacksFieldException.class
 ru\tsu\hits\userservice\dto\CreateUpdateGroupDto.class
 ru\tsu\hits\userservice\exception\UserNotFoundException.class
 ru\tsu\hits\userservice\exception\StudentAlreadyBelongsToGroup.class
@@ -9,6 +10,7 @@ ru\tsu\hits\userservice\configuration\SecurityConfigurer.class
 ru\tsu\hits\userservice\model\GroupEntity.class
 ru\tsu\hits\userservice\configuration\CorsConfig.class
 ru\tsu\hits\userservice\dto\GroupDto.class
+ru\tsu\hits\userservice\exception\WrongRoleException.class
 ru\tsu\hits\userservice\model\Role.class
 ru\tsu\hits\userservice\service\GroupService.class
 ru\tsu\hits\userservice\UserServiceApplication.class

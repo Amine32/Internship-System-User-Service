@@ -53,4 +53,9 @@ public class UserController {
     public UserDto setCompany(@PathVariable String userId, @PathVariable String companyId) {
         return userService.addCompany(userId, companyId);
     }
+
+    @GetMapping("/id/{userId}")
+    public UserDto getUserById(@PathVariable String userId) {
+        return userService.getUserDtoById(userId);
+    }
 }

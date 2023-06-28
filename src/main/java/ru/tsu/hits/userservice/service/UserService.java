@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
 import ru.tsu.hits.userservice.dto.UserSecurityDto;
@@ -31,7 +32,7 @@ import java.util.*;
 public class UserService {
 
     private final UserRepository userRepository;
-    private RestTemplate restTemplate;
+    private final WebClient.Builder webClientBuilder;
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
@@ -49,18 +50,16 @@ public class UserService {
 
         if(userEntity.getRole() == Role.SCHOOL) {
             if(userEntity.getGroup() != null) {
-                HttpHeaders headers = new HttpHeaders();
-                headers.set("Content-Type", "application/json");
-                HttpEntity<String> entity = new HttpEntity<>(headers);
-
-                restTemplate.postForEntity("https://hits-application-service.onrender.com/api/students/" + userEntity.getId(), entity, String.class);
+                webClientBuilder.build()
+                        .post()
+                        .uri("https://hits-application-service.onrender.com/api/students/" + userEntity.getId());
             }
             else {
                 throw new UserLacksFieldException("Student requires a corresponding groupNumber");
             }
         }
 
-        if(userEntity.getRole() == Role.COMPANY && userEntity.getCompanyId() != null) {
+        if(userEntity.getRole() == Role.COMPANY && userEntity.getCompanyId() == null) {
             throw new UserLacksFieldException("User belonging to company needs a company id");
         }
 
@@ -69,6 +68,19 @@ public class UserService {
 
     public void editUser(UserEntity user) {
         userRepository.save(user);
+    }
+
+    @Transactional
+    public UserDto editUserById(String userId, CreateUpdateUserDto dto) {
+        UserEntity user = getUserById(userId);
+        user.setEmail(dto.getEmail());
+        user.setFirstName(dto.getFirstName());
+        user.setPassword(dto.getPatronym());
+        user.setLastName(dto.getLastName());
+
+        user = userRepository.save(user);
+
+        return UserDtoConverter.convertEntityToDto(user);
     }
 
     @Transactional(readOnly = true)
@@ -118,7 +130,10 @@ public class UserService {
             headers.set("Authorization", "Bearer " + jwtToken);
             HttpEntity<String> entity = new HttpEntity<>(headers);
 
-            restTemplate.delete("https://hits-application-service.onrender.com/api/students/" + id, entity, String.class);
+            webClientBuilder.build()
+                    .delete()
+                    .uri("https://hits-application-service.onrender.com/api/students/" + id)
+                    .headers(httpHeaders -> httpHeaders.addAll(headers));
         }
     }
 

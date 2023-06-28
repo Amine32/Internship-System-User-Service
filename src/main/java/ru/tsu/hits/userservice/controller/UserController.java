@@ -58,4 +58,9 @@ public class UserController {
     public UserDto getUserById(@PathVariable String userId) {
         return userService.getUserDtoById(userId);
     }
+
+    @PostMapping("/edit/{userId}")
+    public UserDto editUser(@PathVariable String userId, @RequestBody CreateUpdateUserDto dto){
+        return userService.editUserById(userId, dto);
+    }
 }

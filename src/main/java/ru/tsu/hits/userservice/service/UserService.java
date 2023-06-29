@@ -4,13 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
@@ -109,9 +107,7 @@ public class UserService {
         List<UserEntity> users = userRepository.findAllByRole(role);
         List<UserDto> result = new ArrayList<>();
 
-        users.forEach(element -> {
-            result.add(UserDtoConverter.convertEntityToDto(element));
-        });
+        users.forEach(element -> result.add(UserDtoConverter.convertEntityToDto(element)));
 
         return result;
     }
@@ -128,7 +124,6 @@ public class UserService {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Content-Type", "application/json");
             headers.set("Authorization", "Bearer " + jwtToken);
-            HttpEntity<String> entity = new HttpEntity<>(headers);
 
             webClientBuilder.build()
                     .delete()
@@ -180,12 +175,13 @@ public class UserService {
             // Convert payload JSON string to a Map
             Map<String, Object> payloadMap;
             try {
-                payloadMap = new ObjectMapper().readValue(payload, new TypeReference<Map<String, Object>>() {});
+                payloadMap = new ObjectMapper().readValue(payload, new TypeReference<>() {
+                });
             } catch (JsonProcessingException e) {
                 throw new RuntimeException("Failed to decode payload", e);
             }
 
-            // Get the sub claim
+            // Get the 'sub' claim
             String email = (String) payloadMap.get("sub");
 
             return getUserDtoByEmail(email);

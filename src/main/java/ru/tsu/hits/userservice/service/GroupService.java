@@ -68,9 +68,7 @@ public class GroupService {
 
         List<GroupDto> result = new ArrayList<>();
 
-        groups.forEach(element -> {
-            result.add(GroupDtoConverter.convertEntityToDto(element));
-        });
+        groups.forEach(element -> result.add(GroupDtoConverter.convertEntityToDto(element)));
 
         return result;
     }

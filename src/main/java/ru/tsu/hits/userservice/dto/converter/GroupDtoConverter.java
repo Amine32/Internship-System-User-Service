@@ -18,9 +18,7 @@ public class GroupDtoConverter {
         List<UserDto> students = new ArrayList<>();
 
         if (group.getStudents() != null) {
-            group.getStudents().forEach(element -> {
-                students.add(UserDtoConverter.convertEntityToDto(element));
-            });
+            group.getStudents().forEach(element -> students.add(UserDtoConverter.convertEntityToDto(element)));
         }
 
         dto.setStudents(students);

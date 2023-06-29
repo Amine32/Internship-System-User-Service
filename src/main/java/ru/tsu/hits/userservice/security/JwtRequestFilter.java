@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import ru.tsu.hits.userservice.exception.JwtTokenExpiredException;
+import ru.tsu.hits.userservice.exception.JwtTokenMalformedException;
+import ru.tsu.hits.userservice.exception.JwtTokenMissingException;
 import ru.tsu.hits.userservice.service.CustomUserDetailsService;
 
 import javax.servlet.FilterChain;
@@ -46,12 +49,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                 try {
                     username = jwtUtil.extractUsername(jwtToken);
                 } catch (IllegalArgumentException e) {
-                    System.out.println("Unable to get JWT Token");
+                    throw new JwtTokenMalformedException("Unable to get JWT Token");
                 } catch (ExpiredJwtException e) {
-                    System.out.println("JWT Token has expired");
+                    throw new JwtTokenExpiredException("JWT Token has expired");
                 }
             } else {
-                logger.warn("JWT Token does not begin with Bearer String");
+                throw new JwtTokenMissingException("JWT Token does not begin with Bearer String");
             }
 
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {

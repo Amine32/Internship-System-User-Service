@@ -21,12 +21,17 @@ public class ExceptionHandlerFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        try {
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
             filterChain.doFilter(servletRequest, servletResponse);
-        } catch (JwtTokenMissingException | JwtTokenMalformedException | JwtTokenExpiredException ex) {
-            handleException((HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse, ex);
-        } catch (Exception ex) {
-            handleException((HttpServletRequest) servletRequest, (HttpServletResponse) servletResponse, new RuntimeException("Internal Server Error"));
+        } else {
+            try {
+                filterChain.doFilter(servletRequest, servletResponse);
+            } catch (JwtTokenMissingException | JwtTokenMalformedException | JwtTokenExpiredException ex) {
+                handleException(request, (HttpServletResponse) servletResponse, ex);
+            } catch (Exception ex) {
+                handleException(request, (HttpServletResponse) servletResponse, new RuntimeException("Internal Server Error"));
+            }
         }
     }
 

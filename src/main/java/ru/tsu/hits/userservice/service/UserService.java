@@ -72,6 +72,12 @@ public class UserService {
     @Transactional
     public UserDto editUserById(String userId, UpdateUserDto dto) {
         UserEntity user = getUserById(userId);
+
+        UserEntity checkEmail = getUserByEmail(dto.getEmail());
+        if(!Objects.equals(user.getEmail(), dto.getEmail()) && checkEmail != null) {
+            throw new IllegalArgumentException("Email already exists");
+        }
+
         user.setEmail(dto.getEmail());
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());

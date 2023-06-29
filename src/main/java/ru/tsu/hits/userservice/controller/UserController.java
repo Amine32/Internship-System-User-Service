@@ -10,6 +10,7 @@ import ru.tsu.hits.userservice.model.Role;
 import ru.tsu.hits.userservice.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -60,8 +61,8 @@ public class UserController {
         return userService.getUserDtoById(userId);
     }
 
-    @PostMapping("/edit/{userId}")
-    public UserDto editUser(@PathVariable String userId, @RequestBody UpdateUserDto dto){
+    @PatchMapping("/edit/{userId}")
+    public UserDto editUser(@PathVariable String userId, @Valid @RequestBody UpdateUserDto dto){
         return userService.editUserById(userId, dto);
     }
 }

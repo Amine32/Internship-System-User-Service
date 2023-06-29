@@ -13,13 +13,14 @@ C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\UserNotFoundException.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\model\GroupEntity.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\JwtTokenMissingException.java
+C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\UpdateUserDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\configuration\SwaggerConfig.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\controller\JwtAuthenticationController.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\controller\UserController.java
-C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\CreateUpdateUserDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\GroupDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\controller\GroupController.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\UserServiceApplication.java
+C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\CreateUserDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\repository\GroupRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\JwtRequest.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\GroupNotFoundException.java
@@ -27,6 +28,7 @@ C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\controller\CustomExceptionHandler.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\GroupService.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\JwtResponse.java
+C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\WorkPlaceDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\repository\UserRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\StudentAlreadyBelongsToGroup.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\CustomUserDetailsService.java

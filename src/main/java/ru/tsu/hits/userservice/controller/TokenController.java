@@ -19,7 +19,6 @@ public class TokenController {
     @PostMapping("/validate")
     public ResponseEntity<?> validateToken(@RequestBody String token) {
         try {
-            System.out.println("Validating Token: " + token);
             boolean isValid = jwtUtil.validateToken(token);
             return ResponseEntity.ok(isValid);
         } catch (Exception e) {

@@ -13,7 +13,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import ru.tsu.hits.userservice.security.ExceptionHandlerFilter;
 import ru.tsu.hits.userservice.security.JwtRequestFilter;
 import ru.tsu.hits.userservice.service.CustomUserDetailsService;
 
@@ -25,8 +24,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     private final CustomUserDetailsService myUserDetailsService;
 
     private final JwtRequestFilter jwtRequestFilter;
-
-    private final ExceptionHandlerFilter exceptionHandlerFilter;
 
 
     @Override
@@ -44,8 +41,6 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-        http.addFilterBefore(exceptionHandlerFilter, JwtRequestFilter.class);
-
     }
 
 

@@ -23,7 +23,6 @@ C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\repository\GroupRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\JwtRequest.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\GroupNotFoundException.java
-C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\security\ExceptionHandlerFilter.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\converter\UserDtoConverter.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\controller\CustomExceptionHandler.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\GroupService.java

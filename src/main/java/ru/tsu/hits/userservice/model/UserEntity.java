@@ -30,8 +30,4 @@ public class UserEntity {
     private GroupEntity group;
 
     private String companyId;
-
-    private String positionId;
-
-    private String internshipLocation;
 }

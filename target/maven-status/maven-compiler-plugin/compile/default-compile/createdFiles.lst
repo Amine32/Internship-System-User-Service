@@ -1,10 +1,12 @@
 ru\tsu\hits\userservice\exception\UserLacksFieldException.class
 ru\tsu\hits\userservice\dto\CreateUpdateGroupDto.class
+ru\tsu\hits\userservice\dto\WorkPlaceDto.class
 ru\tsu\hits\userservice\exception\UserNotFoundException.class
 ru\tsu\hits\userservice\exception\StudentAlreadyBelongsToGroup.class
 ru\tsu\hits\userservice\controller\TokenController.class
 ru\tsu\hits\userservice\controller\UserController.class
 ru\tsu\hits\userservice\dto\JwtResponse.class
+ru\tsu\hits\userservice\dto\UpdateUserDto.class
 ru\tsu\hits\userservice\dto\converter\UserDtoConverter.class
 ru\tsu\hits\userservice\controller\GroupController.class
 ru\tsu\hits\userservice\configuration\SecurityConfigurer.class
@@ -21,6 +23,7 @@ ru\tsu\hits\userservice\repository\GroupRepository.class
 ru\tsu\hits\userservice\security\JwtUtil.class
 ru\tsu\hits\userservice\security\CustomUserDetails.class
 ru\tsu\hits\userservice\dto\JwtRequest.class
+ru\tsu\hits\userservice\dto\CreateUserDto.class
 ru\tsu\hits\userservice\dto\UserDto.class
 ru\tsu\hits\userservice\dto\UserSecurityDto.class
 ru\tsu\hits\userservice\model\UserEntity.class
@@ -31,5 +34,4 @@ ru\tsu\hits\userservice\service\UserService$1.class
 ru\tsu\hits\userservice\service\UserService.class
 ru\tsu\hits\userservice\exception\GroupNotFoundException.class
 ru\tsu\hits\userservice\service\CustomUserDetailsService.class
-ru\tsu\hits\userservice\dto\CreateUpdateUserDto.class
 ru\tsu\hits\userservice\dto\converter\GroupDtoConverter.class

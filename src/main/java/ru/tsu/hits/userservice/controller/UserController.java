@@ -2,7 +2,8 @@ package ru.tsu.hits.userservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
+import ru.tsu.hits.userservice.dto.CreateUserDto;
+import ru.tsu.hits.userservice.dto.UpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
 import ru.tsu.hits.userservice.dto.UserSecurityDto;
 import ru.tsu.hits.userservice.model.Role;
@@ -19,7 +20,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/sign-up")
-    public UserDto signUp(@RequestBody CreateUpdateUserDto user) {
+    public UserDto signUp(@RequestBody CreateUserDto user) {
         return userService.signUp(user);
     }
 
@@ -60,7 +61,7 @@ public class UserController {
     }
 
     @PostMapping("/edit/{userId}")
-    public UserDto editUser(@PathVariable String userId, @RequestBody CreateUpdateUserDto dto){
+    public UserDto editUser(@PathVariable String userId, @RequestBody UpdateUserDto dto){
         return userService.editUserById(userId, dto);
     }
 }

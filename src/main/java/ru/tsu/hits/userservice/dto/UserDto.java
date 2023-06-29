@@ -20,4 +20,8 @@ public class UserDto {
     private String groupNumber;
 
     private String companyId;
+
+    private String companyName;
+
+    private String position;
 }

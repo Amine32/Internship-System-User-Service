@@ -10,7 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
-import ru.tsu.hits.userservice.dto.CreateUpdateUserDto;
+import ru.tsu.hits.userservice.dto.CreateUserDto;
+import ru.tsu.hits.userservice.dto.UpdateUserDto;
 import ru.tsu.hits.userservice.dto.UserDto;
 import ru.tsu.hits.userservice.dto.UserSecurityDto;
 import ru.tsu.hits.userservice.dto.converter.UserDtoConverter;
@@ -34,7 +35,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Transactional
-    public UserDto signUp(CreateUpdateUserDto dto) {
+    public UserDto signUp(CreateUserDto dto) {
         UserEntity userEntity = UserDtoConverter.convertDtoToEntity(dto);
         userEntity.setRole(Role.valueOf(dto.getRole()));
 
@@ -69,12 +70,12 @@ public class UserService {
     }
 
     @Transactional
-    public UserDto editUserById(String userId, CreateUpdateUserDto dto) {
+    public UserDto editUserById(String userId, UpdateUserDto dto) {
         UserEntity user = getUserById(userId);
         user.setEmail(dto.getEmail());
         user.setFirstName(dto.getFirstName());
-        user.setPassword(dto.getPatronym());
         user.setLastName(dto.getLastName());
+        user.setPatronym(dto.getPatronym());
 
         user = userRepository.save(user);
 

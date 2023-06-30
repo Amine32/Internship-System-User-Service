@@ -1,6 +1,5 @@
 ru\tsu\hits\userservice\exception\UserLacksFieldException.class
 ru\tsu\hits\userservice\dto\CreateUpdateGroupDto.class
-ru\tsu\hits\userservice\dto\WorkPlaceDto.class
 ru\tsu\hits\userservice\exception\UserNotFoundException.class
 ru\tsu\hits\userservice\exception\StudentAlreadyBelongsToGroup.class
 ru\tsu\hits\userservice\controller\TokenController.class

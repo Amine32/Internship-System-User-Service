@@ -47,7 +47,7 @@ public class UserService {
         userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
         userEntity = userRepository.save(userEntity);
 
-        if(userEntity.getRole() == Role.SCHOOL) {
+        if(userEntity.getRole() == Role.STUDENT) {
             if(userEntity.getGroup() != null) {
                 webClientBuilder.build()
                         .post()

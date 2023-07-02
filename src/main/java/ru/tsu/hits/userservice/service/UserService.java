@@ -51,7 +51,10 @@ public class UserService {
             if(userEntity.getGroup() != null) {
                 webClientBuilder.build()
                         .post()
-                        .uri("https://hits-application-service.onrender.com/api/students/" + userEntity.getId());
+                        .uri("https://hits-application-service.onrender.com/api/students/" + userEntity.getId())
+                        .retrieve()
+                        .bodyToMono(Void.class)
+                        .block();
             }
             else {
                 throw new UserLacksFieldException("Student requires a corresponding groupNumber");
@@ -135,7 +138,10 @@ public class UserService {
             webClientBuilder.build()
                     .delete()
                     .uri("https://hits-application-service.onrender.com/api/students/" + id)
-                    .headers(httpHeaders -> httpHeaders.addAll(headers));
+                    .headers(httpHeaders -> httpHeaders.addAll(headers))
+                    .retrieve()
+                    .bodyToMono(Void.class)
+                    .block();
         }
     }
 

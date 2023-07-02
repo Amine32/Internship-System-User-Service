@@ -28,7 +28,6 @@ C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\controller\CustomExceptionHandler.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\GroupService.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\JwtResponse.java
-C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\dto\WorkPlaceDto.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\repository\UserRepository.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\exception\StudentAlreadyBelongsToGroup.java
 C:\Users\Amine\IdeaProjects\Internship-System\User-Service\src\main\java\ru\tsu\hits\userservice\service\CustomUserDetailsService.java
